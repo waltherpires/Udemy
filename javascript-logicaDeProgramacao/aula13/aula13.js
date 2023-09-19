@@ -1,0 +1,1 @@
+let umaString = 'Um texto';
