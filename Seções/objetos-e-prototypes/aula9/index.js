@@ -33,7 +33,7 @@ CC.prototype = Object.create(Conta.prototype);
 CC.prototype.constructor = CC;
 
 CC.prototype.sacar = function(valor) {
-    if(this.saldo + this.limite < valor) {
+    if(this.saldo + this.limite < valor) { //permite um saque maior que o valor em conta
         console.log(`Saldo insuficiente: ${this.saldo}`);
         return;
     }
