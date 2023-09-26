@@ -1,0 +1,17 @@
+body { 
+    display: flex;
+    
+    text-align: center;
+}
+div {
+    
+    width: 40vw;
+    background-color: rgb(182, 62, 62);
+    text-align: center;
+    padding: 5px;
+}
+
+p {
+    color: white;
+
+}
