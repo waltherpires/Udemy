@@ -1,4 +1,4 @@
-class ValidaCPF {
+export  default class ValidaCPF {
     constructor(cpfEnviado) {
         Object.defineProperty(this, 'cpfLimpo', {
             writable: false,
@@ -39,14 +39,8 @@ class ValidaCPF {
         if(this.Sequencia()) return false;
         this.geraNovoCpf();
         
-
         return this.novoCPF === this.cpfLimpo;
     }
 }
 
-const validacpf = new ValidaCPF('073.418.273-26');
-if (validacpf.valida()) {
-    console.log('CPF válido');
-} else {
-    console.log('CPF inválido');
-}
+
