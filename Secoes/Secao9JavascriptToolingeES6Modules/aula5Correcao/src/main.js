@@ -1,3 +1,3 @@
-import formGeraSenha from './modules/geraSenha'
+import formGeraSenha from './modules/formGeraSenha'
 import './assets/css/style.css';
-formGeraSenha
+formGeraSenha();

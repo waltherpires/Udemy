@@ -2,6 +2,77 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/modules/formGeraSenha.js":
+/*!**************************************!*\
+  !*** ./src/modules/formGeraSenha.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _geradores__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./geradores */ "./src/modules/geradores.js");
+
+var senhaGerada = document.querySelector('.senha-gerada');
+var qtdCaracteres = document.querySelector('.qtd-caracteres');
+var chkMaiusculas = document.querySelector('.chk-maiusculas');
+var chkMinusculas = document.querySelector('.chk-minusculas');
+var chkNumeros = document.querySelector('.chk-numeros');
+var chkSimbolos = document.querySelector('.chk-simbolos');
+var gerarSenha = document.querySelector('.gerar-senha');
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
+  gerarSenha.addEventListener('click', function () {
+    senhaGerada.innerHTML = gera();
+  });
+});
+function gera() {
+  var senha = (0,_geradores__WEBPACK_IMPORTED_MODULE_0__["default"])(qtdCaracteres.value, chkMaiusculas.checked, chkMinusculas.checked, chkNumeros.checked, chkSimbolos.checked);
+  return senha || 'Nada selecionado.';
+}
+
+/***/ }),
+
+/***/ "./src/modules/geradores.js":
+/*!**********************************!*\
+  !*** ./src/modules/geradores.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ geraSenha)
+/* harmony export */ });
+var rand = function rand(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+var geraMaiuscula = function geraMaiuscula() {
+  return String.fromCharCode(rand(65, 91));
+};
+var geraMinuscula = function geraMinuscula() {
+  return String.fromCharCode(rand(97, 123));
+};
+var geraNumero = function geraNumero() {
+  return String.fromCharCode(rand(48, 58));
+};
+var simbolos = ',.;^~[]!@#$%¨&*()+=-';
+var geraSimbolo = function geraSimbolo() {
+  return simbolos[rand(0, simbolos.length)];
+};
+function geraSenha(qtd, maiusculas, minusculas, numeros, simbolos) {
+  var senhaArray = [];
+  qtd = Number(qtd);
+  for (var i = 0; i < qtd; i++) {
+    maiusculas && senhaArray.push(geraMaiuscula());
+    minusculas && senhaArray.push(geraMinuscula());
+    numeros && senhaArray.push(geraNumero());
+    simbolos && senhaArray.push(geraSimbolo());
+  }
+  return senhaArray.join('').slice(0, qtd);
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/assets/css/style.css":
 /*!************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/assets/css/style.css ***!
@@ -79,7 +150,23 @@ form button {
 form button:hover {
   background: var(--primary-color-darker);
 }
-`, "",{"version":3,"sources":["webpack://./src/assets/css/style.css"],"names":[],"mappings":"AACA;EACE,iCAAiC;EACjC,sCAAsC;AACxC;;AAEA;EACE,sBAAsB;EACtB,UAAU;AACZ;;AAEA;EACE,SAAS;EACT,UAAU;EACV,gCAAgC;EAChC,oCAAoC;EACpC,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,iBAAiB;EACjB,gBAAgB;EAChB,aAAa;EACb,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,uCAAuC;AACzC;;AAEA;EACE,YAAY;EACZ,gCAAgC;EAChC,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,YAAY;EACZ,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,uCAAuC;AACzC","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');\n:root {\n  --primary-color: rgb(17, 86, 102);\n  --primary-color-darker: rgb(9, 48, 56);\n}\n\n* {\n  box-sizing: border-box;\n  outline: 0;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--primary-color);\n  font-family: 'Open sans', sans-serif;\n  font-size: 1.3em;\n  line-height: 1.5em;\n}\n\n.container {\n  max-width: 640px;\n  margin: 50px auto;\n  background: #fff;\n  padding: 20px;\n  border-radius: 10px;\n}\n\nform input, form label, form button {\n  display: block;\n  width: 100%;\n  margin-bottom: 10px;\n}\n\nform input {\n  font-size: 24px;\n  height: 50px;\n  padding: 0 20px;\n}\n\nform input:focus {\n  outline: 1px solid var(--primary-color);\n}\n\nform button {\n  border: none;\n  background: var(--primary-color);\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  height: 50px;\n  cursor: pointer;\n  margin-top: 30px;\n}\n\nform button:hover {\n  background: var(--primary-color-darker);\n}\n"],"sourceRoot":""}]);
+
+.senha-gerada {
+  font-size: 2em;
+  color: var(--primary-color);
+  margin: 40px 0;
+}
+
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
+
+button {
+  display: block;
+  margin: 40px 0;
+  font-size: 1em;
+}`, "",{"version":3,"sources":["webpack://./src/assets/css/style.css"],"names":[],"mappings":"AACA;EACE,iCAAiC;EACjC,sCAAsC;AACxC;;AAEA;EACE,sBAAsB;EACtB,UAAU;AACZ;;AAEA;EACE,SAAS;EACT,UAAU;EACV,gCAAgC;EAChC,oCAAoC;EACpC,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,iBAAiB;EACjB,gBAAgB;EAChB,aAAa;EACb,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,uCAAuC;AACzC;;AAEA;EACE,YAAY;EACZ,gCAAgC;EAChC,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,YAAY;EACZ,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,uCAAuC;AACzC;;AAEA;EACE,cAAc;EACd,2BAA2B;EAC3B,cAAc;AAChB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,cAAc;EACd,cAAc;EACd,cAAc;AAChB","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');\n:root {\n  --primary-color: rgb(17, 86, 102);\n  --primary-color-darker: rgb(9, 48, 56);\n}\n\n* {\n  box-sizing: border-box;\n  outline: 0;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--primary-color);\n  font-family: 'Open sans', sans-serif;\n  font-size: 1.3em;\n  line-height: 1.5em;\n}\n\n.container {\n  max-width: 640px;\n  margin: 50px auto;\n  background: #fff;\n  padding: 20px;\n  border-radius: 10px;\n}\n\nform input, form label, form button {\n  display: block;\n  width: 100%;\n  margin-bottom: 10px;\n}\n\nform input {\n  font-size: 24px;\n  height: 50px;\n  padding: 0 20px;\n}\n\nform input:focus {\n  outline: 1px solid var(--primary-color);\n}\n\nform button {\n  border: none;\n  background: var(--primary-color);\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  height: 50px;\n  cursor: pointer;\n  margin-top: 30px;\n}\n\nform button:hover {\n  background: var(--primary-color-darker);\n}\n\n.senha-gerada {\n  font-size: 2em;\n  color: var(--primary-color);\n  margin: 40px 0;\n}\n\ninput[type=\"checkbox\"] {\n  width: 25px;\n  height: 25px;\n}\n\nbutton {\n  display: block;\n  margin: 40px 0;\n  font-size: 1em;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -606,8 +693,11 @@ var __webpack_exports__ = {};
   !*** ./src/main.js ***!
   \*********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
+/* harmony import */ var _modules_formGeraSenha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/formGeraSenha */ "./src/modules/formGeraSenha.js");
+/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
 
+
+(0,_modules_formGeraSenha__WEBPACK_IMPORTED_MODULE_0__["default"])();
 })();
 
 /******/ })()

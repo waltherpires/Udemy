@@ -17,9 +17,9 @@ export default() => {
 function gera() {
     const senha = geraSenha(
         qtdCaracteres.value,
-        chkMaiusculas.ariaChecked,
-        chkMinusculas.ariaChecked,
-        chkNumeros.ariaChecked,
+        chkMaiusculas.checked,
+        chkMinusculas.checked,
+        chkNumeros.checked,
         chkSimbolos.checked
     );
 
