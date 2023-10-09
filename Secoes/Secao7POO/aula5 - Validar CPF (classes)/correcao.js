@@ -13,10 +13,12 @@ class ValidaCPF {
     }
 
     geraNovoCpf() {
-        const cpfSemDigitos = this.cpfLimpo.slice(0, -2);
+        const cpfSemDigitos = this.cpfLimpo
         const digito1 = ValidaCPF.geraDigito(cpfSemDigitos);
         const digito2 = ValidaCPF.geraDigito(cpfSemDigitos + digito1);
         this.novoCPF = cpfSemDigitos + digito1 + digito2;
+        console.log(digito1);
+        console.log(digito2);
     }
 
     static geraDigito(cpfSemDigitos) {
@@ -44,9 +46,5 @@ class ValidaCPF {
     }
 }
 
-const validacpf = new ValidaCPF('073.418.273-26');
-if (validacpf.valida()) {
-    console.log('CPF válido');
-} else {
-    console.log('CPF inválido');
-}
+const validacpf = new ValidaCPF('049.984.903');
+validacpf.geraNovoCpf()
