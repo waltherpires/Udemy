@@ -8,22 +8,22 @@ async function readdir(rootDir) {
 }
 
 async function walk(files, rootDir) {
-    for (let file of files) {
+    for(let file of files) {
         const fileFullPath = path.resolve(rootDir, file);
         const stats = await fs.stat(fileFullPath);
-        
-        if (/\.git/g.test(fileFullPath)) continue;
-        if (/node_modules/g.test(fileFullPath)) continue;
 
+        if(/\.git/g.test(fileFullPath)) continue;
+        if(/node_modules/g.test(fileFullPath)) continue;
+        
         if(stats.isDirectory()) {
             readdir(fileFullPath);
             continue;
-        }
+        } 
 
-        if(!/\.css$/g.test(fileFullPath)) continue; //pode ser usado pra filtar e pesquisar arquivos específicos 
-
+        if(
+         !/\.html$/g.test(fileFullPath)
+         ) continue;
         console.log(fileFullPath);
     }
-
 }
 readdir('C:/Users/Walther/Documents/Estudos/javascript/udemy/Secoes');
