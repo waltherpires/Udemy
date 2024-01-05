@@ -1,0 +1,11 @@
+npm i helmet
+npm i csurf
+npm i connect-mongo
+npm i connect-flash
+npm i mongodb
+npm i mongoose
+npm i express
+npm i dotenv
+npm i ejs
+npm i express-session
+npm i nodemon
