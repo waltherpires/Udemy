@@ -27,5 +27,6 @@ module.exports = {
     'import/first': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-param-reassign': 'off',
+    camelcase: 'off',
   },
 };

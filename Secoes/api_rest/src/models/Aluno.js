@@ -26,6 +26,9 @@ export default class Aluno extends Model {
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
+        unique: {
+          msg: 'E-mail já cadastrado',
+        },
         validate: {
           isEmail: {
             msg: 'E-mail inválido',
@@ -45,23 +48,23 @@ export default class Aluno extends Model {
         type: Sequelize.FLOAT,
         defaultValue: '',
         validate: {
-          isEmail: {
-            isFloat: 'O peso precisa ser um número inteiro ou de ponto flutuante',
-          },
+          isFloat: 'O peso precisa ser um número inteiro ou de ponto flutuante',
         },
       },
       altura: {
         type: Sequelize.FLOAT,
         defaultValue: '',
         validate: {
-          isEmail: {
-            isFloat: 'A altura precisa ser um número inteiro ou de ponto flutuante',
-          },
+          isFloat: 'A altura precisa ser um número inteiro ou de ponto flutuante',
         },
       },
     }, {
       sequelize,
     });
     return this;
+  }
+
+  static associate(models) {
+    this.hasMany(models.Foto, { foreignKey: 'aluno_id' });
   }
 }
