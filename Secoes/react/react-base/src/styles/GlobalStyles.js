@@ -25,14 +25,7 @@ export default createGlobalStyle`
     border: none;
     color: #fff;
     padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 700;
-  }
-
-  a {
-    text-decoration: none;
-    color: ${primaryColor}
-  }
+    border-radius: 4px; font-weight: 700; } a { text-decoration: none; color: ${primaryColor} }
 
   ul {
     list-style: none;
